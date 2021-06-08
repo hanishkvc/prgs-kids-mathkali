@@ -30,7 +30,17 @@ function create_biscuit() {
 }
 
 
-function draw_biscuit() {
+function draw_biscuits(x, y, fullCnt, halfCnt) {
+	gCtxt.save();
+	gCtxt.translate(x,y);
+	for(i=0; i<halfCnt; i++) {
+		gCtxt.stroke(ph);
+		gCtxt.translate(0,20);
+	}
+	for(i=0; i<fullCnt; i++) {
+		gCtxt.stroke(pf);
+		gCtxt.translate(0,20);
+	}
 }
 
 
@@ -38,6 +48,7 @@ function gr_clean() {
 	gCtxt.fillStyle = "#8080D0";
 	gCtxt.fillRect(0,0,gelCanvas.width, gelCanvas.height);
 }
+
 
 function gr_init() {
 	create_biscuit();
