@@ -41,6 +41,7 @@ function draw_biscuits(x, y, fullCnt, halfCnt) {
 		gCtxt.stroke(pf);
 		gCtxt.translate(0,20);
 	}
+	gCtxt.restore();
 }
 
 
