@@ -34,6 +34,11 @@ function draw_biscuit() {
 }
 
 
+function gr_clean() {
+	gCtxt.fillStyle = "#8080D0";
+	gCtxt.fillRect(0,0,gelCanvas.width, gelCanvas.height);
+}
+
 function gr_init() {
 	create_biscuit();
 }
