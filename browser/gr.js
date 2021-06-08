@@ -54,7 +54,7 @@ function gr_clean() {
 function gr_init(elCanvas) {
 	gCtxt = elCanvas.getContext('2d');
 	elCanvas.width = window.innerWidth;
-	elCanvas.height = Math.round(window.innerHeight*0.7);
+	elCanvas.height = Math.round(window.innerHeight*0.66);
 	create_biscuit();
 }
 
