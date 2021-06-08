@@ -1,12 +1,30 @@
 <html>
 	<head>
 		<title> Math Kali </title>
+		<script defer src="add.js"> </script>
+		<script defer src="main.js"> </script>
+		<style>
+			#bottom button { border-style: double; }
+			#author { font-size: xx-small; text-align: right; }
+		</style>
 	</head>
 	<body>
 		<h2> Math Kali </h2>
 		<div id="top"> </div>
 		<div id="main"> </div>
-		<div id="bottom"> </div>
+		<div id="bottom">
+			<button id="add"> add </add>
+			<button id="sub"> sub </add>
+		</div>
+		<div id="author">
+			<p> HanishKVC, v20210608IST1308 </p>
+		</div>
+		<script>
+			var gelTop = document.getElementById("top");
+			var gelMain = document.getElementById("main");
+			var gelBottom = document.getElementById("bottom");
+			document.addEventListener("DOMContentLoad", start_here);
+		</script>
 	</body>
 </html>
 
