@@ -1,7 +1,7 @@
 
 
-function hoc_add(ev, el) {
+function hoc_add(ev, elQ, elH, elA) {
 	let v1 = Math.round(Math.random()*10);
 	let v2 = Math.round(Math.random()*10);
-	el.textContent = `What is ${v1} + ${v2}?`;
+	elQ.textContent = `What is ${v1} + ${v2}?`;
 }

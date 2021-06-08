@@ -4,25 +4,31 @@
 		<script defer src="add.js"> </script>
 		<script defer src="main.js"> </script>
 		<style>
+			#heading { border-style: outset; padding: 2px 12px 2px 12px; }
 			#bottom button { border-style: double; }
 			#author { font-size: xx-small; text-align: right; }
 		</style>
 	</head>
 	<body>
-		<h2> Math Kali </h2>
+		<div id="heading">
+			<h2> Math Kali </h2>
+		</div>
 		<div id="top"> </div>
+		<hr>
 		<div id="main"> </div>
+		<p id="question"> </p>
+		<p id="hint"> </p>
+		<p id="answer"> </p>
+		<hr>
 		<div id="bottom">
 			<button id="add"> add </add>
 			<button id="sub"> sub </add>
 		</div>
+		<hr>
 		<div id="author">
 			<p> HanishKVC, v20210608IST1308 </p>
 		</div>
 		<script>
-			var gelTop = document.getElementById("top");
-			var gelMain = document.getElementById("main");
-			var gelBottom = document.getElementById("bottom");
 			window.addEventListener("DOMContentLoaded", (ev) => start_here(ev));
 		</script>
 	</body>
