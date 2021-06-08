@@ -16,6 +16,7 @@ function setup_things() {
 
 
 function start_here() {
+	console.log("MathKali: Starting...");
 	setup_things();
 }
 
