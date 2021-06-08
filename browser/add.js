@@ -1,3 +1,8 @@
+/*
+ * Main: the main manager of things wrt this logic
+ * HanishKVC, 2021
+ * GPL
+ */
 
 
 function hoc_add(ev, elQ, elH, elA) {

@@ -10,7 +10,6 @@ var gelQtn, gelHint, gelAns;
 var gelAdd;
 
 
-
 function setup_things() {
 	gelTop = document.getElementById("top");
 	gelMain = document.getElementById("main");
@@ -18,6 +17,8 @@ function setup_things() {
 	gelQtn = document.getElementById("question");
 	gelHint = document.getElementById("hint");
 	gelAns = document.getElementById("answer");
+	gelCanvas = document.getElementById("canvas");
+	gCtxt = gelCanvas.getContext('2d');
 	gelAdd = document.getElementById("add");
 	gelAdd.onclick = (ev) => hoc_add(ev, gelQtn, gelHint, gelAns);
 }
@@ -26,6 +27,7 @@ function setup_things() {
 function start_here() {
 	console.log("MathKali: Starting...");
 	setup_things();
+	gr_init();
 }
 
 
