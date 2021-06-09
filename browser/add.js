@@ -17,4 +17,5 @@ function hoc_add(ev, elQ, elH, elA) {
 	let v2 = Math.round(Math.random()*99);
 	elQ.textContent = `What is ${v1} + ${v2}?`;
 	vhint_add(v1, v2);
+	show_multichoice(elA, v1+v2, 99*2);
 }
