@@ -5,41 +5,43 @@
  */
 
 
+var g = { x: 0, y: 0 };
+var ob = { w: 20, h: 20 };
+
 function create_biscuit() {
-	pf = new Path2D();
-	pf.moveTo(0,0);
-	pf.lineTo(0,20);
-	pf.lineTo(20,20);
-	pf.lineTo(20,0);
-	pf.lineTo(0,0);
-	pf.moveTo(5,5);
-	pf.lineTo(5,15);
-	pf.lineTo(15,15);
-	pf.lineTo(15,5);
-	pf.lineTo(5,5);
-	ph = new Path2D();
-	ph.moveTo(0,0);
-	ph.lineTo(0,20);
-	ph.lineTo(10,20);
-	ph.lineTo(10,15);
-	ph.lineTo(5,15);
-	ph.lineTo(5,5);
-	ph.lineTo(10,5);
-	ph.lineTo(10,0);
-	ph.lineTo(0,0);
+	let pf = new Path2D();
+	pf.moveTo(0, 0);
+	pf.lineTo(0, ob.h);
+	pf.lineTo(ob.w, ob.h);
+	pf.lineTo(ob.w, 0);
+	pf.lineTo(0, 0);
+	pf.moveTo(ob.w*0.5, ob.h*0.1);
+	pf.lineTo(ob.w*0.5, ob.h*0.9);
+	ob.full = pf;
+	let ph = new Path2D();
+	ph.moveTo(0, 0);
+	ph.lineTo(0, ob.h);
+	ph.lineTo(ob.w*0.5, ob.h);
+	ph.lineTo(ob.w*0.4, ob.h*.5);
+	ph.lineTo(ob.w*0.5, 0);
+	ph.lineTo(0, 0);
+	ob.half = ph;
 }
 
 
 function draw_biscuits(x, y, fullCnt, halfCnt) {
 	gCtxt.save();
+	if (x === -1) x = g.x;
+	if (y === -1) y = g.y;
 	gCtxt.translate(x,y);
 	for(i=0; i<halfCnt; i++) {
-		gCtxt.stroke(ph);
-		gCtxt.translate(0,20);
+		gCtxt.stroke(ob.half);
+		gCtxt.translate(0,ob.h+2);
+
 	}
 	for(i=0; i<fullCnt; i++) {
-		gCtxt.stroke(pf);
-		gCtxt.translate(0,20);
+		gCtxt.stroke(ob.full);
+		gCtxt.translate(0,ob.h+2);
 	}
 	gCtxt.restore();
 }
@@ -53,8 +55,9 @@ function gr_clean() {
 
 function gr_init(elCanvas) {
 	gCtxt = elCanvas.getContext('2d');
-	elCanvas.width = window.innerWidth;
+	elCanvas.width = window.innerWidth*0.98;
 	elCanvas.height = Math.round(window.innerHeight*0.66);
+	gr_clean();
 	create_biscuit();
 }
 
