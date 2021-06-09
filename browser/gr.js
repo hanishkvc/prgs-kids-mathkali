@@ -8,6 +8,7 @@
 var g = { x: 0, y: 0 };
 var ob = { w: 20, h: 20 };
 
+
 function create_biscuit() {
 	let pf = new Path2D();
 	pf.moveTo(0, 0);
@@ -35,14 +36,12 @@ function draw_biscuits(x, y, fullCnt, halfCnt) {
 	if (x === -1) x = g.x; else g.x = x;
 	if (y === -1) y = g.y; else g.y = y;
 	gCtxt.translate(x, y);
-	let c = 0;
 	for(i=0; i<halfCnt; i++) {
 		gCtxt.stroke(ob.half);
 		g.y += ob.h+2;
 		gCtxt.translate(0, ob.h+2);
 		if ((g.screenHeight-g.y) < (ob.h*2)) {
-			c += 1;
-			g.x = x+(ob.w+2)*c;
+			g.x += (ob.w+2);
 			g.y = y;
 			gCtxt.restore();
 			gCtxt.save();
@@ -54,14 +53,14 @@ function draw_biscuits(x, y, fullCnt, halfCnt) {
 		g.y += ob.h+2;
 		gCtxt.translate(0, ob.h+2);
 		if ((g.screenHeight-g.y) < (ob.h*2)) {
-			c += 1;
-			g.x = x+(ob.w+2)*c;
+			g.x += (ob.w+2);
 			g.y = y;
 			gCtxt.restore();
 			gCtxt.save();
 			gCtxt.translate(g.x, g.y);
 		}
 	}
+	g.x += (ob.w+2);
 	gCtxt.restore();
 	gCtxt.restore();
 }
