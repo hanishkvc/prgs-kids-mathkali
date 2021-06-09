@@ -6,7 +6,7 @@
 
 
 function vhint_add(v1, v2) {
-	gr_clean();
+	gr_clear();
 	draw_objects(ob, 40,20, v1, 0);
 	draw_objects(ob, -1,20, v2, 0);
 }

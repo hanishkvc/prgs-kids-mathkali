@@ -70,7 +70,7 @@ function draw_objects(ob, x, y, fullCnt, halfCnt) {
 }
 
 
-function gr_clean() {
+function gr_clear() {
 	gCtxt.fillStyle = "#8080D0";
 	gCtxt.fillRect(0,0,gelCanvas.width, gelCanvas.height);
 }
@@ -82,7 +82,7 @@ function gr_init(elCanvas) {
 	elCanvas.height = Math.round(window.innerHeight*0.66);
 	g.screenWidth = elCanvas.width;
 	g.screenHeight = elCanvas.height;
-	gr_clean();
+	gr_clear();
 	ob = init_biscuits();
 }
 
