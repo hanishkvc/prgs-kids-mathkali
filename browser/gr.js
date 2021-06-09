@@ -6,10 +6,13 @@
 
 
 var g = { x: 0, y: 0 };
-var ob = { w: 20, h: 20 };
+var ob;
 
 
-function create_biscuit() {
+function init_biscuits() {
+	let ob = {};
+	ob.w = Math.round(g.screenWidth * 0.06);
+	ob.h = Math.round(g.screenHeight * 0.06);
 	let pf = new Path2D();
 	pf.moveTo(0, 0);
 	pf.lineTo(0, ob.h);
@@ -27,10 +30,11 @@ function create_biscuit() {
 	ph.lineTo(ob.w*0.5, 0);
 	ph.lineTo(0, 0);
 	ob.half = ph;
+	return ob;
 }
 
 
-function draw_biscuits(x, y, fullCnt, halfCnt) {
+function draw_objects(ob, x, y, fullCnt, halfCnt) {
 	gCtxt.save();
 	gCtxt.save();
 	if (x === -1) x = g.x; else g.x = x;
@@ -79,6 +83,6 @@ function gr_init(elCanvas) {
 	g.screenWidth = elCanvas.width;
 	g.screenHeight = elCanvas.height;
 	gr_clean();
-	create_biscuit();
+	ob = init_biscuits();
 }
 
