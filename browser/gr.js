@@ -31,18 +31,38 @@ function create_biscuit() {
 
 function draw_biscuits(x, y, fullCnt, halfCnt) {
 	gCtxt.save();
-	if (x === -1) x = g.x;
-	if (y === -1) y = g.y;
-	gCtxt.translate(x,y);
+	gCtxt.save();
+	if (x === -1) x = g.x; else g.x = x;
+	if (y === -1) y = g.y; else g.y = y;
+	gCtxt.translate(x, y);
+	let c = 0;
 	for(i=0; i<halfCnt; i++) {
 		gCtxt.stroke(ob.half);
-		gCtxt.translate(0,ob.h+2);
-
+		g.y += ob.h+2;
+		gCtxt.translate(0, ob.h+2);
+		if ((g.screenHeight-g.y) < (ob.h*2)) {
+			c += 1;
+			g.x = x+(ob.w+2)*c;
+			g.y = y;
+			gCtxt.restore();
+			gCtxt.save();
+			gCtxt.translate(g.x, g.y);
+		}
 	}
 	for(i=0; i<fullCnt; i++) {
 		gCtxt.stroke(ob.full);
-		gCtxt.translate(0,ob.h+2);
+		g.y += ob.h+2;
+		gCtxt.translate(0, ob.h+2);
+		if ((g.screenHeight-g.y) < (ob.h*2)) {
+			c += 1;
+			g.x = x+(ob.w+2)*c;
+			g.y = y;
+			gCtxt.restore();
+			gCtxt.save();
+			gCtxt.translate(g.x, g.y);
+		}
 	}
+	gCtxt.restore();
 	gCtxt.restore();
 }
 
@@ -57,6 +77,8 @@ function gr_init(elCanvas) {
 	gCtxt = elCanvas.getContext('2d');
 	elCanvas.width = window.innerWidth*0.98;
 	elCanvas.height = Math.round(window.innerHeight*0.66);
+	g.screenWidth = elCanvas.width;
+	g.screenHeight = elCanvas.height;
 	gr_clean();
 	create_biscuit();
 }
