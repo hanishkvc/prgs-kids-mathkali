@@ -11,12 +11,14 @@ var gelAdd;
 
 
 function update_status(msg) {
+	gelStatus.textContent = msg;
 }
+
 
 function show_multichoice(el, ans, maxValue, fixedPoints=0, numMCs=4) {
 	el.innerHTML = "";
 	let pos = Math.round(Math.random()*numMCs);
-	mc = [];
+	let mc = [];
 	for(i = 0; i < pos; i++) {
 		let other = Math.random()*(ans-1);
 		mc.push(other);
@@ -27,9 +29,19 @@ function show_multichoice(el, ans, maxValue, fixedPoints=0, numMCs=4) {
 		mc.push(other);
 	}
 	for(i in mc) {
-		btn = document.createElement("button");
+		let msg;
+		let btn = document.createElement("button");
 		btn.id = "b${i}";
-		btn.textContent = mc[i].toFixed(fixedPoints);
+		value = mc[i];
+		if (value === ans) {
+			msg = `Correct Ans: ${value}`;
+		} else {
+			msg = "Wrong answer";
+		}
+		btn.onclick = function(ev) {
+			update_status(msg);
+		}
+		btn.textContent = value.toFixed(fixedPoints);
 		el.appendChild(btn);
 	}
 }

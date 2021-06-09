@@ -13,6 +13,7 @@ function vhint_add(v1, v2) {
 
 
 function hoc_add(ev, elQ, elH, elA) {
+	update_status("Answer the new question...");
 	let v1 = Math.round(Math.random()*99);
 	let v2 = Math.round(Math.random()*99);
 	elQ.textContent = `What is ${v1} + ${v2}?`;
