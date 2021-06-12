@@ -15,32 +15,35 @@ function update_status(msg) {
 }
 
 
-function show_multichoice(el, ans, maxValue, fixedPoints=0, numMCs=4, cbFunc, cbArgs) {
+function show_multichoice(el, args) {
+	let fixedPoints = args.fixedPoints ? args.fixedPoints : 0;
+	let numMCs = args.numMCs ? args.numMCs : 4;
 	el.innerHTML = "";
 	let pos = Math.round(Math.random()*numMCs);
 	let mc = [];
 	for(i = 0; i < pos; i++) {
-		let other = Math.random()*(ans-1);
+		let other = Math.random()*(args.ans-1);
 		mc.push(other);
 	}
-	mc.push(ans);
+	mc.push(args.ans);
 	for(i = pos+1; i < 4; i++) {
-		let other = (ans+1) + Math.random()*(maxValue-ans);
+		let other = (args.ans+1) + Math.random()*(args.maxValue-args.ans);
 		mc.push(other);
 	}
 	for(i in mc) {
 		let msg;
 		let btn = document.createElement("button");
 		btn.id = "b${i}";
-		value = mc[i];
-		if (value === ans) {
+		let value = mc[i];
+		if (value === args.ans) {
 			msg = `Correct Ans: ${value}`;
 		} else {
 			msg = "Wrong answer";
-			if (cbFunc) cbFunc(cbArgs);
 		}
 		btn.onclick = function(ev) {
 			update_status(msg);
+			args.cbArgs['res'] = value;
+			if (args.cbFunc) args.cbFunc(args.cbArgs);
 		}
 		btn.textContent = value.toFixed(fixedPoints);
 		el.appendChild(btn);

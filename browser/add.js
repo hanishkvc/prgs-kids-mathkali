@@ -39,5 +39,5 @@ function hoc_add(ev, elQ, elH, elA) {
 	elQ.textContent = `What is ${v1} + ${v2}?`;
 	data = {'v1': v1, 'v2': v2};
 	vhint_add(data);
-	show_multichoice(elA, v1+v2, 99*2);
+	show_multichoice(elA, { ans: v1+v2, maxValue: 99*2, 'data': data, cbFunc: vhint_add, cbArgs: data });
 }
