@@ -34,13 +34,32 @@ function init_biscuits() {
 }
 
 
+/*
+ * draw a bunch of objects.
+ * ob: the object
+ * x,y: the starting location. If -1, then pick from global next x,y values.
+ *	even this logic will update the global x and y.
+ * full: the details about full size objects that need to be shown.
+ * half: the details about half size objects that need to be shown.
+ * 	cnt: the number of such objects to show.
+ * 	color: array of [color values + number of objects with that color].
+ */
 function draw_objects(ob, x, y, full, half) {
 	gCtxt.save();
 	gCtxt.save();
 	if (x === -1) x = g.x; else g.x = x;
 	if (y === -1) y = g.y; else g.y = y;
+	if (half.color === undefined) half.color = [ {cnt:half.cnt, color: 'green'} ];
+	if (full.color === undefined) full.color = [ {cnt:full.cnt, color: 'green'} ];
 	gCtxt.translate(x, y);
+	colorIndex = 0;
 	for(i=0; i<half.cnt; i++) {
+		if (i >= half.color[colorIndex].cnt) {
+			colorIndex += 1;
+		}
+		let color = half.color[colorIndex].color;
+		gCtxt.fillStyle = color;
+		gCtxt.fill(ob.half);
 		gCtxt.stroke(ob.half);
 		g.y += ob.h+2;
 		gCtxt.translate(0, ob.h+2);
@@ -52,7 +71,14 @@ function draw_objects(ob, x, y, full, half) {
 			gCtxt.translate(g.x, g.y);
 		}
 	}
+	colorIndex = 0;
 	for(i=0; i<full.cnt; i++) {
+		if (i >= full.color[colorIndex].cnt) {
+			colorIndex += 1;
+		}
+		let color = full.color[colorIndex].color;
+		gCtxt.fillStyle = color;
+		gCtxt.fill(ob.full);
 		gCtxt.stroke(ob.full);
 		g.y += ob.h+2;
 		gCtxt.translate(0, ob.h+2);
