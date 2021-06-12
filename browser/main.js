@@ -23,11 +23,13 @@ function show_multichoice(el, args) {
 	let mc = [];
 	for(i = 0; i < pos; i++) {
 		let other = Math.random()*(args.ans-1);
+		if (fixedPoints === 0) other = Math.round(other);
 		mc.push(other);
 	}
 	mc.push(args.ans);
 	for(i = pos+1; i < 4; i++) {
 		let other = (args.ans+1) + Math.random()*(args.maxValue-args.ans);
+		if (fixedPoints === 0) other = Math.round(other);
 		mc.push(other);
 	}
 	for(i in mc) {
