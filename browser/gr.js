@@ -45,30 +45,30 @@ function init_biscuits() {
  * 	color: array of [color values + number of objects with that color].
  */
 function draw_objects(ob, x, y, full, half) {
-	gCtxt.save();
-	gCtxt.save();
+	g.ctxt.save();
+	g.ctxt.save();
 	if (x === -1) x = g.x; else g.x = x;
 	if (y === -1) y = g.y; else g.y = y;
 	if (half.color === undefined) half.color = [ {cnt:half.cnt, color: 'green'} ];
 	if (full.color === undefined) full.color = [ {cnt:full.cnt, color: 'green'} ];
-	gCtxt.translate(x, y);
+	g.ctxt.translate(x, y);
 	colorIndex = 0;
 	for(i=0; i<half.cnt; i++) {
 		if (i >= half.color[colorIndex].cnt) {
 			colorIndex += 1;
 		}
 		let color = half.color[colorIndex].color;
-		gCtxt.fillStyle = color;
-		gCtxt.fill(ob.half);
-		gCtxt.stroke(ob.half);
+		g.ctxt.fillStyle = color;
+		g.ctxt.fill(ob.half);
+		g.ctxt.stroke(ob.half);
 		g.y += ob.h+2;
-		gCtxt.translate(0, ob.h+2);
+		g.ctxt.translate(0, ob.h+2);
 		if ((g.screenHeight-g.y) < (ob.h*2)) {
 			g.x += (ob.w+2);
 			g.y = y;
-			gCtxt.restore();
-			gCtxt.save();
-			gCtxt.translate(g.x, g.y);
+			g.ctxt.restore();
+			g.ctxt.save();
+			g.ctxt.translate(g.x, g.y);
 		}
 	}
 	colorIndex = 0;
@@ -77,33 +77,33 @@ function draw_objects(ob, x, y, full, half) {
 			colorIndex += 1;
 		}
 		let color = full.color[colorIndex].color;
-		gCtxt.fillStyle = color;
-		gCtxt.fill(ob.full);
-		gCtxt.stroke(ob.full);
+		g.ctxt.fillStyle = color;
+		g.ctxt.fill(ob.full);
+		g.ctxt.stroke(ob.full);
 		g.y += ob.h+2;
-		gCtxt.translate(0, ob.h+2);
+		g.ctxt.translate(0, ob.h+2);
 		if ((g.screenHeight-g.y) < (ob.h*2)) {
 			g.x += (ob.w+2);
 			g.y = y;
-			gCtxt.restore();
-			gCtxt.save();
-			gCtxt.translate(g.x, g.y);
+			g.ctxt.restore();
+			g.ctxt.save();
+			g.ctxt.translate(g.x, g.y);
 		}
 	}
 	g.x += (ob.w+2);
-	gCtxt.restore();
-	gCtxt.restore();
+	g.ctxt.restore();
+	g.ctxt.restore();
 }
 
 
 function gr_clear() {
-	gCtxt.fillStyle = "#8080D0";
-	gCtxt.fillRect(0,0,gelCanvas.width, gelCanvas.height);
+	g.ctxt.fillStyle = "#8080D0";
+	g.ctxt.fillRect(0,0,gelCanvas.width, gelCanvas.height);
 }
 
 
 function gr_init(elCanvas) {
-	gCtxt = elCanvas.getContext('2d');
+	g.ctxt = elCanvas.getContext('2d');
 	elCanvas.width = window.innerWidth*0.98;
 	elCanvas.height = Math.round(window.innerHeight*0.66);
 	g.screenWidth = elCanvas.width;
