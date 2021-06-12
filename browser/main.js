@@ -15,7 +15,7 @@ function update_status(msg) {
 }
 
 
-function show_multichoice(el, ans, maxValue, fixedPoints=0, numMCs=4) {
+function show_multichoice(el, ans, maxValue, fixedPoints=0, numMCs=4, cbFunc, cbArgs) {
 	el.innerHTML = "";
 	let pos = Math.round(Math.random()*numMCs);
 	let mc = [];
@@ -37,6 +37,7 @@ function show_multichoice(el, ans, maxValue, fixedPoints=0, numMCs=4) {
 			msg = `Correct Ans: ${value}`;
 		} else {
 			msg = "Wrong answer";
+			if (cbFunc) cbFunc(cbArgs);
 		}
 		btn.onclick = function(ev) {
 			update_status(msg);
