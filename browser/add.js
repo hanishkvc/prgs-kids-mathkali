@@ -29,6 +29,11 @@ function vhint_add(data) {
 	}
 	draw_objects(ob, 40, 20, v1Full, v1Half);
 	draw_objects(ob, -1, 20, v2Full, v2Half);
+	if (rem > 0) {
+		let rFull = { cnt: rem, color: [ { cnt: rem, color: "blue" } ] };
+		let rHalf = { cnt: 0 };
+		draw_objects(ob, -1, 20, rFull, rHalf);
+	}
 }
 
 

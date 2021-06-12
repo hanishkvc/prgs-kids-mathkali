@@ -36,9 +36,9 @@ function show_multichoice(el, args) {
 		btn.id = "b${i}";
 		let value = mc[i];
 		if (value === args.ans) {
-			msg = `Correct Ans: ${value}`;
+			msg = `Answer ${value} is Correct`;
 		} else {
-			msg = "Wrong answer";
+			msg = `Answer ${value} is Wrong`;
 		}
 		btn.onclick = function(ev) {
 			update_status(msg);
