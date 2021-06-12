@@ -34,13 +34,13 @@ function init_biscuits() {
 }
 
 
-function draw_objects(ob, x, y, fullCnt, halfCnt) {
+function draw_objects(ob, x, y, full, half) {
 	gCtxt.save();
 	gCtxt.save();
 	if (x === -1) x = g.x; else g.x = x;
 	if (y === -1) y = g.y; else g.y = y;
 	gCtxt.translate(x, y);
-	for(i=0; i<halfCnt; i++) {
+	for(i=0; i<half.cnt; i++) {
 		gCtxt.stroke(ob.half);
 		g.y += ob.h+2;
 		gCtxt.translate(0, ob.h+2);
@@ -52,7 +52,7 @@ function draw_objects(ob, x, y, fullCnt, halfCnt) {
 			gCtxt.translate(g.x, g.y);
 		}
 	}
-	for(i=0; i<fullCnt; i++) {
+	for(i=0; i<full.cnt; i++) {
 		gCtxt.stroke(ob.full);
 		g.y += ob.h+2;
 		gCtxt.translate(0, ob.h+2);
