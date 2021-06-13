@@ -7,6 +7,7 @@
 
 var gelTop, gelMain, gelBottom;
 var gelQtn, gelHint, gelAns;
+var gelUStatus;
 var gelAdd;
 
 
@@ -23,6 +24,7 @@ function show_getanswer(el, args) {
 	input.onchange = function(ev) {
 		value = Number(input.value);
 		if (value === args.ans) {
+			user_updatetime();
 			msg = `Answer ${value} is Correct`;
 		} else {
 			msg = `Answer ${value} is Wrong`;
@@ -64,6 +66,7 @@ function show_multichoice(el, args) {
 		btn.onclick = function(ev) {
 			update_status(msg);
 			args.cbArgs['res'] = value;
+			if (value === args.ans) user_updatetime();
 			if (args.cbFunc) args.cbFunc(args.cbArgs);
 		}
 		btn.textContent = value.toFixed(fixedPoints);
@@ -88,6 +91,7 @@ function setup_things() {
 	gelVHint = document.getElementById("vhint");
 	gelCanvas = document.getElementById("canvas");
 	gelStatus = document.getElementById("status");
+	gelUStatus = document.getElementById("ustatus");
 	gelCfgVHint = document.getElementById("cfgvhint");
 	gelCfgVHint.onchange = function(ev) {
 		gelVHint.hidden = gelCfgVHint.checked;
@@ -97,9 +101,35 @@ function setup_things() {
 }
 
 
+function setup_user() {
+	user_setup();
+	setInterval(function(){
+		gelUStatus.innerHTML = "";
+		for(k in user.times) {
+			console.log(user.times[k]);
+			let tr = document.createElement("tr");
+			let ttype = document.createElement("td");
+			ttype.textContent = k;
+			let tmin = document.createElement("td");
+			tmin.textContent = user.times[k].min;
+			let tmax = document.createElement("td");
+			tmax.textContent = user.times[k].max;
+			let tavg = document.createElement("td");
+			tavg.textContent = user.times[k].avg;
+			tr.appendChild(ttype);
+			tr.appendChild(tavg);
+			tr.appendChild(tmin);
+			tr.appendChild(tmax);
+			gelUStatus.appendChild(tr);
+		}
+	}, 5000);
+}
+
+
 function start_here() {
 	console.log("MathKali: Starting...");
 	setup_things();
+	setup_user();
 	gr_init(gelCanvas);
 }
 

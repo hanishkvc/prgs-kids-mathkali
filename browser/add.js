@@ -44,6 +44,7 @@ function hoc_add(ev, elQ, elH, elA) {
 	elQ.textContent = `What is ${v1} + ${v2}?`;
 	data = {'v1': v1, 'v2': v2};
 	vhint_add(data);
+	user_starttime('add');
 	if (gelCfgMultiChoice.checked)
 		show_multichoice(elA, { ans: v1+v2, maxValue: 99*2, 'data': data, cbFunc: vhint_add, cbArgs: data });
 	else
