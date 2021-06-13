@@ -11,8 +11,8 @@ var ob;
 
 function init_biscuits() {
 	let ob = {};
-	ob.w = Math.round(g.screenWidth * 0.06);
-	ob.h = Math.round(g.screenHeight * 0.06);
+	ob.w = Math.round(g.screenWidth * 0.04);
+	ob.h = Math.round(g.screenHeight * 0.04);
 	let pf = new Path2D();
 	pf.moveTo(0, 0);
 	pf.lineTo(0, ob.h);
