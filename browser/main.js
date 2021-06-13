@@ -53,6 +53,12 @@ function show_multichoice(el, args) {
 }
 
 
+function setup_tests() {
+	gelAdd = document.getElementById("add");
+	gelAdd.onclick = (ev) => hoc_add(ev, gelQtn, gelHint, gelAns);
+}
+
+
 function setup_things() {
 	gelTop = document.getElementById("top");
 	gelMain = document.getElementById("main");
@@ -60,10 +66,15 @@ function setup_things() {
 	gelQtn = document.getElementById("question");
 	gelHint = document.getElementById("hint");
 	gelAns = document.getElementById("answer");
+	gelVHint = document.getElementById("vhint");
 	gelCanvas = document.getElementById("canvas");
 	gelStatus = document.getElementById("status");
-	gelAdd = document.getElementById("add");
-	gelAdd.onclick = (ev) => hoc_add(ev, gelQtn, gelHint, gelAns);
+	gelCfgVHint = document.getElementById("cfgvhint");
+	gelCfgVHint.onchange = function(ev) {
+		gelVHint.hidden = gelCfgVHint.checked;
+	}
+	gelCfgMultiChoice = document.getElementById("cfgmultichoice");
+	setup_tests();
 }
 
 

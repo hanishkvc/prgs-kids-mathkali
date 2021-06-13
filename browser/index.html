@@ -14,12 +14,21 @@
 		<div id="heading">
 			<h2> Math Kali </h2>
 		</div>
-		<div id="top"> </div>
+		<div id="top">
+			<table>
+				<tbody id="uconfig">
+					<tr>
+						<td> <input type="checkbox" id="cfgmultichoice"> MultiChoice </input> </td>
+						<td> <input type="checkbox" id="cfgvhint"> VHint </input> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<hr>
 		<div id="main">
 		<p id="question"> </p>
 		<p id="hint"> </p>
-		<canvas id="canvas"></canvas>
+		<div id="vhint"> <canvas id="canvas"></canvas> </div>
 		<p id="answer"> </p>
 		</div>
 		<p id="status"> </p>
@@ -27,6 +36,13 @@
 		<div id="bottom">
 			<button id="add"> add </add>
 			<button id="sub"> sub </add>
+		</div>
+		<hr>
+		<div id="ustatusdiv">
+			<table>
+				<tbody id="ustatus">
+				</tbody>
+			</table>
 		</div>
 		<hr>
 		<div id="author">
