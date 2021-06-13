@@ -111,11 +111,11 @@ function setup_user() {
 			let ttype = document.createElement("td");
 			ttype.textContent = k;
 			let tmin = document.createElement("td");
-			tmin.textContent = user.times[k].min;
+			tmin.textContent = user.times[k].min.toFixed(2);
 			let tmax = document.createElement("td");
-			tmax.textContent = user.times[k].max;
+			tmax.textContent = user.times[k].max.toFixed(2);
 			let tavg = document.createElement("td");
-			tavg.textContent = user.times[k].avg;
+			tavg.textContent = user.times[k].avg.toFixed(2);
 			tr.appendChild(ttype);
 			tr.appendChild(tavg);
 			tr.appendChild(tmin);

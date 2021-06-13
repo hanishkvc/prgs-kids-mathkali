@@ -21,11 +21,11 @@ function user_updatetime() {
 		return;
 	}
 	let time = performance.now()/1000;
-	if (user.times[type] === undefined) user.times[type] = { min: 0, max: 0, avg: 0 };
+	time = (time - user.curTime);
+	if (user.times[type] === undefined) user.times[type] = { min: 99999, max: 0, avg: 0 };
 	if (user.times[type].min > time) user.times[type].min = time;
 	if (user.times[type].max < time) user.times[type].max = time;
-	let deltaTime = (time - user.curTime);
-	user.times[type].avg = (user.times[type].avg + deltaTime)/2;
+	user.times[type].avg = (user.times[type].avg + time)/2;
 }
 
 
