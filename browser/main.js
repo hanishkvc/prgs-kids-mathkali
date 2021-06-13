@@ -15,6 +15,25 @@ function update_status(msg) {
 }
 
 
+function show_getanswer(el, args) {
+	el.innerHTML = "Enter answer:";
+	let input = document.createElement("input");
+	input.type = "number";
+	el.appendChild(input);
+	input.onchange = function(ev) {
+		value = Number(input.value);
+		if (value === args.ans) {
+			msg = `Answer ${value} is Correct`;
+		} else {
+			msg = `Answer ${value} is Wrong`;
+		}
+		update_status(msg);
+		args.cbArgs['res'] = value;
+		if (args.cbFunc) args.cbFunc(args.cbArgs);
+	}
+}
+
+
 function show_multichoice(el, args) {
 	let fixedPoints = args.fixedPoints ? args.fixedPoints : 0;
 	let numMCs = args.numMCs ? args.numMCs : 4;
