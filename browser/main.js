@@ -24,9 +24,10 @@ function show_getanswer(el, args) {
 	input.onchange = function(ev) {
 		value = Number(input.value);
 		if (value === args.ans) {
-			user_updatetime();
+			user_update(true);
 			msg = `Answer ${value} is Correct`;
 		} else {
+			user_update(false);
 			msg = `Answer ${value} is Wrong`;
 		}
 		update_status(msg);
@@ -66,7 +67,10 @@ function show_multichoice(el, args) {
 		btn.onclick = function(ev) {
 			update_status(msg);
 			args.cbArgs['res'] = value;
-			if (value === args.ans) user_updatetime();
+			if (value === args.ans)
+				user_update(true);
+			else
+				user_update(false);
 			if (args.cbFunc) args.cbFunc(args.cbArgs);
 		}
 		btn.textContent = value.toFixed(fixedPoints);
@@ -116,10 +120,16 @@ function setup_user() {
 			tmax.textContent = user.times[k].max.toFixed(2);
 			let tavg = document.createElement("td");
 			tavg.textContent = user.times[k].avg.toFixed(2);
+			let tcorrect = document.createElement("td");
+			tcorrect.textContent = user.times[k].correct;
+			let twrong = document.createElement("td");
+			twrong.textContent = user.times[k].wrong;
 			tr.appendChild(ttype);
 			tr.appendChild(tavg);
 			tr.appendChild(tmin);
 			tr.appendChild(tmax);
+			tr.appendChild(tcorrect);
+			tr.appendChild(twrong);
 			gelUStatus.appendChild(tr);
 		}
 	}, 5000);

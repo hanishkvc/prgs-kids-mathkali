@@ -14,7 +14,7 @@ function user_starttime(type) {
 }
 
 
-function user_updatetime() {
+function user_update(correct) {
 	let type = user.type;
 	if (type === undefined) {
 		console.log("ERRR:UserUpdateTime called with undefined type");
@@ -22,7 +22,12 @@ function user_updatetime() {
 	}
 	let time = performance.now()/1000;
 	time = (time - user.curTime);
-	if (user.times[type] === undefined) user.times[type] = { min: 99999, max: 0, avg: 0 };
+	if (user.times[type] === undefined) user.times[type] = { min: 99999, max: 0, avg: 0, correct: 0, wrong: 0 };
+	if ((correct === undefined) || (correct === false)) {
+		user.times[type].wrong += 1;
+		return;
+	}
+	user.times[type].correct += 1;
 	if (user.times[type].min > time) user.times[type].min = time;
 	if (user.times[type].max < time) user.times[type].max = time;
 	user.times[type].avg = (user.times[type].avg + time)/2;
